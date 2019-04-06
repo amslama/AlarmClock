@@ -5,7 +5,7 @@ import javax.swing.JPanel;
 
 public class DateAndTime
 {
-	
+
 	public JComboBox<Integer> monthTime()
 	{
 		JComboBox<Integer> monthTime = new JComboBox<Integer>();
@@ -13,10 +13,10 @@ public class DateAndTime
 		{
 			monthTime.addItem(i);
 		}
-		
-		return monthTime; 
+
+		return monthTime;
 	}
-	
+
 	public JComboBox<Integer> day(int month)
 	{
 		JComboBox<Integer> day = new JComboBox<Integer>();
@@ -34,7 +34,7 @@ public class DateAndTime
 			{
 				day.addItem(i);
 			}
-			
+
 		case 2:
 			for (int i = 1; i < 29; i++)
 			{
@@ -42,7 +42,7 @@ public class DateAndTime
 			}
 		case 4:
 		case 6:
-		case 9: 
+		case 9:
 		case 11:
 			for (int i = 1; i < 31; i++)
 			{
@@ -50,9 +50,9 @@ public class DateAndTime
 			}
 		}
 		return null;
-		
+
 	}
-	
+
 	public JComboBox<Integer> minute()
 	{
 		JComboBox<Integer> minute = new JComboBox<Integer>();
@@ -60,10 +60,20 @@ public class DateAndTime
 		{
 			minute.addItem(i);
 		}
-		
-		return minute; 
+
+		return minute;
 	}
-	
-	
+
+	public JComboBox<Integer> snooze()
+	{
+		return snooze();
+	}
+
+	public JComboBox<Integer> dismiss()
+	{
+		return dismiss();
+	}
+
+
 
 }
