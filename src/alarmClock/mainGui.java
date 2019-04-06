@@ -67,7 +67,7 @@ public class mainGui {
 				if(JOptionPane.YES_OPTION == 1)
 				{
 					
-					 remove(alarmsDropBox.getSelectedItem());
+				//	 remove(alarmsDropBox.getSelectedItem());
 					 
 				}
 
