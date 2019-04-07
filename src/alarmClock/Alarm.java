@@ -31,7 +31,10 @@ public class Alarm {
 	}
 	
 	public boolean expired() {
-		//temp
+		//checks if the current time is a later time than the target time and returns the result in boolean format.
+		if(target.compareTo(LocalDateTime.ofInstant(Clock.systemDefaultZone().instant(), Clock.systemDefaultZone().getZone())) == -1) {
+			return true;
+		}
 		return false;
 	}
 }
