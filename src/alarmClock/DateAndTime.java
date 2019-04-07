@@ -6,10 +6,10 @@ import javax.swing.JPanel;
 public class DateAndTime
 {
 	
-	public JComboBox<Integer> monthTime()
+	public static JComboBox<Integer> monthTime()
 	{
 		JComboBox<Integer> monthTime = new JComboBox<Integer>();
-		for(int i = 0; i < 12; i++)
+		for(int i = 1; i < 13; i++)
 		{
 			monthTime.addItem(i);
 		}
