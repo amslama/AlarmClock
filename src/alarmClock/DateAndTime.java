@@ -33,12 +33,14 @@ public class DateAndTime
 			{
 				day.addItem(i);
 			}
+			break;
 			
 		case 2:
 			for (int i = 1; i < 29; i++)
 			{
 				day.addItem(i);
 			}
+			break;
 		case 4:
 		case 6:
 		case 9: 
@@ -47,8 +49,9 @@ public class DateAndTime
 			{
 				day.addItem(i);
 			}
+			break;
 		}
-		return null;
+		return day;
 		
 	}
 	
