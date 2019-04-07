@@ -1,7 +1,6 @@
 package alarmClock;
 
 import javax.swing.JComboBox;
-import javax.swing.JPanel;
 
 public class DateAndTime
 {
@@ -17,7 +16,7 @@ public class DateAndTime
 		return monthTime; 
 	}
 	
-	public JComboBox<Integer> day(int month)
+	public static JComboBox<Integer> day(int month)
 	{
 		JComboBox<Integer> day = new JComboBox<Integer>();
 

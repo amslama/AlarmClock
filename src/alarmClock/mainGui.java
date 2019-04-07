@@ -46,6 +46,8 @@ public class mainGui {
 			public void actionPerformed(ActionEvent e) 
 			{
 
+				try {
+					
 				String name;
 
 				int month = 0;
@@ -55,21 +57,49 @@ public class mainGui {
 
 				name = JOptionPane.showInputDialog (null, "What would you like to call your alarm?");
 
-				JLabel monthQuery= new JLabel("What month would you like to set your alarm for?");
+				JLabel monthQuery = new JLabel("What month would you like to set your alarm for?");
+				JLabel dayQuery = new JLabel("What day would you like to set your alarm for?");
+				JLabel timeQuery = new JLabel("What time would you like to set your alarm for?");
 				c.gridx = 0;
+				
+				JPanel addMonth = new JPanel();
+				addMonth.add(monthQuery, c);	
 				
 				JComboBox<Integer> monthSet = DateAndTime.monthTime();
 				c.gridx = 1;
-				JPanel addMonth = new JPanel();
 				
-				addMonth.add(monthQuery);
-				addMonth.add(monthSet);
+
+				addMonth.add(monthSet, c);
 				
 				int choice = JOptionPane.showConfirmDialog(null, addMonth, "Month Selection", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
 				if(choice == 0)
 				{
+
 					month = (int) monthSet.getSelectedItem();
+					JOptionPane.showMessageDialog(null, "Month has been selected");
+
 				}
+				
+				
+				JComboBox<Integer> daySet = DateAndTime.day(month);
+				JPanel addDay = new JPanel();
+				c.gridx = 0;
+				addDay.add(dayQuery, c);
+				c.gridx = 1;
+				addDay.add(daySet, c);
+				
+				choice = JOptionPane.showConfirmDialog(null, addDay, "Day Selection", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+				if(choice == JOptionPane.OK_CANCEL_OPTION)
+				{
+					day = (int) daySet.getSelectedItem();
+				}
+				
+				}
+				catch(NullPointerException enull)
+				{
+					JOptionPane.showMessageDialog(null, enull.getStackTrace());
+				}
+				
 			}
 
 		});
@@ -79,12 +109,12 @@ public class mainGui {
 
 
 		//combobox for list of alarms
-		JComboBox alarmsDropBox = new JComboBox(/*here we will call a method to populate the list from the xml*/);
-		alarmsDropBox.setBounds(0, 125, 500, 20);
+		//JComboBox alarmsDropBox = new JComboBox(/*here we will call a method to populate the list from the xml*/);
+		//alarmsDropBox.setBounds(0, 125, 500, 20);
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 0;
 		c.gridy = 1;
-		mainGui.add(alarmsDropBox, c);
+		//mainGui.add(alarmsDropBox, c);
 
 		//button to remove alarm
 		JButton removeAlarm = new JButton("Dismiss");
