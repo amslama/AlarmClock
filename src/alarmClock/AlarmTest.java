@@ -6,8 +6,8 @@ public class AlarmTest {
 
 	public static void main(String[] args) {
 		// create a 10 second alarm
-		Alarm target = new Alarm(10);
-		System.out.println("Alarm created, target time is " + target.toString());
+		Alarm target = new Alarm("Test Alarm", 60);
+		System.out.println("Alarm '" + target.getName() + "' created, target time is " + target.toString());
 		while(true) {
 			//simple test loop
 			try {
