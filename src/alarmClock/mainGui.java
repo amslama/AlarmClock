@@ -94,6 +94,26 @@ public class mainGui {
 					day = (int) daySet.getSelectedItem();
 				}
 				
+				JComboBox<Integer> hourSet = DateAndTime.time();
+				JComboBox<Integer> minuteSet = DateAndTime.minute();
+				JPanel addTime = new JPanel();
+				c.gridx = 0;
+				addTime.add(timeQuery, c);
+				c.gridy = 1;
+				addTime.add(hourSet, c);
+				c.gridx = 1;
+				addTime.add(minuteSet, c);
+				
+				choice = JOptionPane.showConfirmDialog(null, addDay, "Day Selection", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+				if(choice == JOptionPane.OK_CANCEL_OPTION)
+				{
+					hour = (int) hourSet.getSelectedItem();
+					minute = (int) minuteSet.getSelectedItem();
+				}
+				
+				
+				
+				
 				}
 				catch(NullPointerException enull)
 				{

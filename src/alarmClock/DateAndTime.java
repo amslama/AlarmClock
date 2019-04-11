@@ -55,7 +55,7 @@ public class DateAndTime
 		
 	}
 	
-	public JComboBox<Integer> minute()
+	public static JComboBox<Integer> minute()
 	{
 		JComboBox<Integer> minute = new JComboBox<Integer>();
 		for(int i = 0; i < 61; i++)
@@ -64,6 +64,17 @@ public class DateAndTime
 		}
 		
 		return minute; 
+	}
+	
+	public static JComboBox<Integer> time()
+	{
+		JComboBox<Integer> time = new JComboBox<Integer>();
+		for(int i = 1; i < 25; i++)
+		{
+			time.addItem(i);
+		}
+		
+		return time; 
 	}
 	
 	
