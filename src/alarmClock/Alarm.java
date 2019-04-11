@@ -43,8 +43,8 @@ public class Alarm {
 		
 	}
 	// constructor for a LocalDateTime object
-	public Alarm(String n,String m, LocalDateTime time) {
-		target = time;
+	public Alarm(String n,String m, String time) {
+		target = LocalDateTime.parse(time);
 		name = n;
 		message = m;
 		
@@ -60,16 +60,21 @@ public class Alarm {
 	public String getName() {
 		return name;
 	}
+	public String getTarget()
+	{
+		return target.toString();
+	}
 	public String getMessage() {
 		return message;
 	}
 	public String toString() {
-		return target.toString();
+		return name;
 	}
 	
 	public boolean isEqual(Alarm al)
 	{
-		if(al.getName() == this.getName())
+		if(al.getName().equals(this.getName()))
+			
 		{
 			return true;
 		}

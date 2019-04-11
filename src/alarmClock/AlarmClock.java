@@ -17,11 +17,5 @@ public class AlarmClock {
 		mainGui.add(mG.createGui());
 		mainGui.setVisible(true);
 	}
-	
-	
-	public static void remove(Object o)
-	{
-		
-	}
 
 }

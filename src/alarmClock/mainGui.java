@@ -148,7 +148,7 @@ public class mainGui {
 				}
 				catch(Exception emptyEx) {
 					JOptionPane.showMessageDialog(null, "You didn't enter anything.");
-					
+
 				}
 
 			}
@@ -179,12 +179,18 @@ public class mainGui {
 			public void actionPerformed(ActionEvent e)
 			{
 
-				JOptionPane.showConfirmDialog (null, "Are you sure you want to delete this alarm?");
-				if(JOptionPane.YES_OPTION == 1)
+				if(CSV.listCounter >= 1) {
+					int dismiss = JOptionPane.showConfirmDialog (null, "Are you sure you want to delete this alarm?");
+					if(dismiss == 0)
+					{
+
+						CSV.remove((Alarm) alarmsDropBox.getSelectedItem());
+
+					}
+				}
+				else
 				{
-
-					CSV.remove((Alarm) alarmsDropBox.getSelectedItem());
-
+					JOptionPane.showMessageDialog(null, "There are no alarms to delete.");
 				}
 
 			}
