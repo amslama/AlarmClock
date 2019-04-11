@@ -20,8 +20,6 @@ public class CSV {
 	public static void writeCSV(Alarm a) {
 
 		String fileName = "AlarmInfo.csv";
-		String fileLine = "";
-		PrintWriter writer = null;
 		// String name = null, message = null;
 		//int month = 0, day = 0, hour = 0, minute = 0, seconds = 0, listCounter = 0;
 
@@ -31,12 +29,12 @@ public class CSV {
 			alarmInfoList.add(a);
 
 			//Writing the argument inputs
-			fw.write(alarmInfoList.get(listCounter).getName() + "," +  alarmInfoList.get(listCounter).getMessage() + "," + alarmInfoList.get(listCounter)+"\n");
+			fw.write(alarmInfoList.get(listCounter).getName() + "," +  alarmInfoList.get(listCounter).getMessage() + "," + alarmInfoList.get(listCounter).getTarget()+"\n");
 			fw.close();
 			listCounter++;
 
-		}catch (FileNotFoundException e){
-			e.printStackTrace();
+	//	}catch (FileNotFoundException e){
+	//		e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -47,16 +45,14 @@ public class CSV {
 	public static void writeAfterRemoveCSV()
 	{
 		String fileName = "AlarmInfo.csv";
-		String fileLine = "";
-		PrintWriter writer = null;
 		// String name = null, message = null;
 		//int month = 0, day = 0, hour = 0, minute = 0, seconds = 0, listCounter = 0;
 
 		try{
-			FileWriter fw = new FileWriter(fileName, true);
+			FileWriter fw = new FileWriter(fileName, false);
 
 			//Writing the argument inputs
-			fw.write(alarmInfoList.get(listCounter).getName() + "," +  alarmInfoList.get(listCounter).getMessage() + "," + alarmInfoList.get(listCounter)+"\n");
+			fw.write(alarmInfoList.get(listCounter).getName() + "," +  alarmInfoList.get(listCounter).getMessage() + "," + alarmInfoList.get(listCounter).getTarget()+"\n");
 			fw.close();
 			listCounter++;
 
@@ -81,8 +77,7 @@ public class CSV {
 			while ((line = reader.readLine()) != null) 
 			{
 				String[] values = line.split(",\\s*");
-				Alarm al = new Alarm(values[0], values[1], Long.valueOf(values[2]), Long.valueOf(values[3]), Long.valueOf(values[4]));
-				System.out.println("Name = " + al.getName());
+				Alarm al = new Alarm(values[0], values[1], values[2]);
 				alarmInfoList.add(al); 
 
 				// If you want to fetch a certain group of information, use alarmInfoList.get() to fetch the whole group
@@ -128,7 +123,8 @@ public class CSV {
 				String name = alarmInfoList.get(i).getName();
 				alarmInfoList.remove(i);
 				JOptionPane.showMessageDialog(null, "Alarm " + name + " removed.");
-				
+				listCounter--;
+				writeAfterRemoveCSV();
 				break;
 				
 			}

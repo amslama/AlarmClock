@@ -39,11 +39,5 @@ public class AlarmClock {
 			}
 		});
 	}
-	
-	
-	public static void remove(Object o)
-	{
-		
-	}
 
 }
