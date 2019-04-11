@@ -67,6 +67,15 @@ public class Alarm {
 		return target.toString();
 	}
 	
+	public boolean isEqual(Alarm al)
+	{
+		if(al.getName() == this.getName())
+		{
+			return true;
+		}
+		return false;
+	}
+	
 	public static void snooze()
 	{
 		String [] options = new String [] {"Snooze" , "Dismiss"};

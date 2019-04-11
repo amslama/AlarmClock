@@ -5,6 +5,7 @@ import java.io.*;
 import java.util.*;
 
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 
 
 
@@ -42,6 +43,30 @@ public class CSV {
 		}
 
 	}
+	
+	public static void writeAfterRemoveCSV()
+	{
+		String fileName = "AlarmInfo.csv";
+		String fileLine = "";
+		PrintWriter writer = null;
+		// String name = null, message = null;
+		//int month = 0, day = 0, hour = 0, minute = 0, seconds = 0, listCounter = 0;
+
+		try{
+			FileWriter fw = new FileWriter(fileName, true);
+
+			//Writing the argument inputs
+			fw.write(alarmInfoList.get(listCounter).getName() + "," +  alarmInfoList.get(listCounter).getMessage() + "," + alarmInfoList.get(listCounter)+"\n");
+			fw.close();
+			listCounter++;
+
+		}catch (FileNotFoundException e){
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 
 	public static void readCSV() 
@@ -59,18 +84,11 @@ public class CSV {
 				Alarm al = new Alarm(values[0], values[1], Long.valueOf(values[2]), Long.valueOf(values[3]), Long.valueOf(values[4]));
 				alarmInfoList.add(al); 
 
-
 				// If you want to fetch a certain group of information, use alarmInfoList.get() to fetch the whole group
 				// From the 2d array
 
-
-
 				//output array to console for quick testing
 				// System.out.println(alarmInfoList);
-
-
-
-
 
 			}
 
@@ -96,6 +114,23 @@ public class CSV {
 			jcbA.addItem(alarmInfoList.get(i));
 		}
 		return jcbA;
+	}
+	
+	public void remove(Alarm al)
+	{
+		for(int i = 0; i < alarmInfoList.size(); i++)
+		{
+			
+			if (alarmInfoList.get(i).equals(al))
+			{
+				String name = alarmInfoList.get(i).getName();
+				alarmInfoList.remove(i);
+				JOptionPane.showMessageDialog(null, "Alarm " + name + " removed.");
+				
+				break;
+				
+			}
+		}
 	}
 
 }
