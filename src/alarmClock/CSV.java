@@ -1,35 +1,43 @@
 package alarmClock;
 
 import java.io.*;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.util.*;
 import java.time.*;
 
 
 public class CSV {
-
-    static List<List<String>> alarmInfoList = new ArrayList<>();
-
+  
+    static List<Alarm> alarmInfoList = new ArrayList<>();
+    static int listCounter = 0;
 
     //TODO Alarm Time is 24 hr time for simplicity, date format is  MM-DD
-    public static void writeCSV( String alarmDate, String alarmTime, String alarmMessage) {
+    public static void writeCSV(Alarm a) {
+    	
         String fileName = "AlarmInfo.csv";
+        String fileLine = "";
         PrintWriter writer = null;
-
+       // String name = null, message = null;
+    	//int month = 0, day = 0, hour = 0, minute = 0, seconds = 0, listCounter = 0;
+        
         try{
-            writer = new PrintWriter(fileName);
+        	FileWriter fw = new FileWriter(fileName, true);
+        			
+            alarmInfoList.add(a);
 
             //Writing the argument inputs
-            writer.print(alarmDate + "," + alarmTime + "," + alarmMessage);
-            writer.println();
-
+            fw.write(alarmInfoList.get(listCounter).getName() + "," +  alarmInfoList.get(listCounter).getMessage() + "," + alarmInfoList.get(listCounter)+"\n");
+        	fw.close();
+            listCounter++;
+            
         }catch (FileNotFoundException e){
             e.printStackTrace();
-        }finally {
-            writer.close();
-        }
+        } catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
     }
 
@@ -37,30 +45,45 @@ public class CSV {
     public static void readCSV() {
         String fileName = "AlarmInfo.csv";
 
-        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+        try{
+        	
+        	//creates the scanner
+        	Scanner scan = new Scanner(new File(fileName));
+        	
+        	//Set delimiter
+        	scan.useDelimiter(",\\s*");
+        	
+        	while(scan.hasNext()){
+        		List<String> lines = new ArrayList<>();
+        		lines.add(scan.next());
+        		System.out.print(lines);
+        	}
+        	scan.close();
 
-            //Skips header line
-            //reader.readLine();
-
-            String line;
+            /*String line;
             while ((line = reader.readLine()) != null) {
                 String[] values = line.split(",\\s*");
                 // Adds the currently parsed line to 2d arraylist
-                alarmInfoList.add(Arrays.asList(values));
+                alarmInfoList.add(Arrays.asList(values)); */
+        	
 
                 // If you want to fetch a certain group of information, use alarmInfoList.get() to fetch the whole group
                 // From the 2d array
 
-            }
+            
 
             //output array to console for quick testing
-            System.out.println(alarmInfoList);
+           // System.out.println(alarmInfoList);
 
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
             e.printStackTrace();
         }
 
     }
+    
+    public static List<Alarm> getList()
+    {
+    	return alarmInfoList;
+    }
+    
 }
