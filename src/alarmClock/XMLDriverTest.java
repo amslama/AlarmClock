@@ -7,7 +7,7 @@ public class XMLDriverTest {
     public static void main(String[] args){
        // XML.generateNextAlarmTab();
         //XML.writeXML("Test Label", 12, 13);
-        CSV.createNewCSV( 1231, 15, "Dentist Appointment");
+        CSV.writewCSV( 1231, 15, "Dentist Appointment");
         CSV.readCSV();
 
        // String datePattern = "MM-dd-yyyy";

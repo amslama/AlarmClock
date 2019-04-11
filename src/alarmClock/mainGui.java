@@ -5,6 +5,7 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -49,6 +50,7 @@ public class mainGui {
 				try {
 					
 				String name;
+				String message;
 
 				int month = 0;
 				int day = 0;
@@ -111,6 +113,25 @@ public class mainGui {
 					minute = (int) minuteSet.getSelectedItem();
 				}
 				
+				if(month != 0 && day != 0 && hour != 0 && minute != 0)
+				{
+					
+					message = JOptionPane.showInputDialog (null, "What message would you like your alarm to display?");
+					Alarm al = new Alarm(name, message, month, day, hour, minute);
+
+				//	CSV.writeCSV(al);
+					JOptionPane.showMessageDialog(null, "Alarm " + name + " created.");
+
+				}
+				
+				else
+				{
+					
+					JOptionPane.showMessageDialog(null, "Alarm was not created");
+
+
+
+				}
 				
 				
 				
@@ -129,12 +150,12 @@ public class mainGui {
 
 
 		//combobox for list of alarms
-		//JComboBox alarmsDropBox = new JComboBox(/*here we will call a method to populate the list from the xml*/);
-		//alarmsDropBox.setBounds(0, 125, 500, 20);
+		JComboBox alarmsDropBox = new JComboBox((ComboBoxModel) CSV.getList());
+		alarmsDropBox.setBounds(0, 125, 500, 20);
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridx = 0;
 		c.gridy = 1;
-		//mainGui.add(alarmsDropBox, c);
+		mainGui.add(alarmsDropBox, c);
 
 		//button to remove alarm
 		JButton removeAlarm = new JButton("Dismiss");
@@ -161,6 +182,12 @@ public class mainGui {
 
 		return mainGui;
 	}
+	
+
+	// Snooze the alarms
+		String [] options = new String [] {"Snooze" , "Dismiss"};
+		int response = JOptionPane.showOptionDialog(null, "Snooze", "Snooze Alarm", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
+
 
 
 
