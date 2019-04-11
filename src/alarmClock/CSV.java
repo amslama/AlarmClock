@@ -8,11 +8,12 @@ import javax.swing.JComboBox;
 
 
 
-
 public class CSV {
 
 	static List<Alarm> alarmInfoList = new ArrayList<>();
 	static int listCounter = 0;
+
+
 
 	//TODO Alarm Time is 24 hr time for simplicity, date format is  MM-DD
 	public static void writeCSV(Alarm a) {
@@ -51,7 +52,6 @@ public class CSV {
 		try 
 		{
 			BufferedReader reader = new BufferedReader(new FileReader(fileName));
-
 			String line;
 			while ((line = reader.readLine()) != null) 
 			{
@@ -68,8 +68,14 @@ public class CSV {
 				//output array to console for quick testing
 				// System.out.println(alarmInfoList);
 
+
+
+
+
 			}
-		} 
+
+
+		}
 		catch (FileNotFoundException e) 
 		{
 			e.printStackTrace();
@@ -80,8 +86,6 @@ public class CSV {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-
 	}
 
 	public static JComboBox<Alarm> getList()

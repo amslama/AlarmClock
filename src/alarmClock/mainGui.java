@@ -30,6 +30,7 @@ public class mainGui {
 
 	//creates the panel for the gui
 	public JPanel createGui() 
+
 	{
 		//Set up panel
 		JPanel mainGui = new JPanel(new GridBagLayout());
@@ -40,16 +41,17 @@ public class mainGui {
 
 		//button for dialog to add new alarm
 		JButton addAlarm = new JButton("Add");
-		addAlarm.setBounds(200,100,50,20);
-		addAlarm.addActionListener(new ActionListener() 
+		addAlarm.setBounds(100,100,50,20);
+		addAlarm.addActionListener(new ActionListener()
 		{
-			public void actionPerformed(ActionEvent e) 
+			public void actionPerformed(ActionEvent e)
 			{
 
 				try {
 
 					String name = "";
 					String message;
+
 
 					int month = 0;
 					int day = 0;
@@ -124,9 +126,7 @@ public class mainGui {
 
 						CSV.writeCSV(al);
 						JOptionPane.showMessageDialog(null, "Alarm " + name + " created.");
-
 					}
-
 
 					else
 					{
@@ -147,6 +147,7 @@ public class mainGui {
 				}
 				catch(Exception emptyEx) {
 					JOptionPane.showMessageDialog(null, "You didn't enter anything.");
+					
 				}
 
 			}
@@ -160,6 +161,7 @@ public class mainGui {
 		//combobox for list of alarms
 		JComboBox<Alarm> alarmsDropBox = CSV.getList();
 		alarmsDropBox.setBounds(0, 125, 500, 20);
+
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridwidth = 2;
 		c.gridx = 0;
@@ -167,12 +169,13 @@ public class mainGui {
 		mainGui.add(alarmsDropBox, c);
 
 		c.gridwidth = 1;
+
 		//button to remove alarm
 		JButton removeAlarm = new JButton("Dismiss");
 		addAlarm.setBounds(500,125,20,20);
-		removeAlarm.addActionListener(new ActionListener() 
+		removeAlarm.addActionListener(new ActionListener()
 		{
-			public void actionPerformed(ActionEvent e) 
+			public void actionPerformed(ActionEvent e)
 			{
 
 				JOptionPane.showConfirmDialog (null, "Are you sure you want to delete this alarm?");

@@ -16,7 +16,6 @@ public class AlarmClock {
 
 		mainGui.add(mG.createGui());
 		mainGui.setVisible(true);
-		Alarm.snooze();
 	}
 	
 	

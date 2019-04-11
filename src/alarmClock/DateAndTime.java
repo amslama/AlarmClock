@@ -4,7 +4,7 @@ import javax.swing.JComboBox;
 
 public class DateAndTime
 {
-	
+
 	public static JComboBox<Integer> monthTime()
 	{
 		JComboBox<Integer> monthTime = new JComboBox<Integer>();
@@ -12,16 +12,17 @@ public class DateAndTime
 		{
 			monthTime.addItem(i);
 		}
-		
-		return monthTime; 
+
+		return monthTime;
 	}
-	
+
 	public static JComboBox<Integer> day(int month)
 	{
 		JComboBox<Integer> day = new JComboBox<Integer>();
 
 		switch(month)
 		{
+
 		case 1:
 		case 3:
 		case 5:
@@ -62,8 +63,8 @@ public class DateAndTime
 		{
 			minute.addItem(i);
 		}
-		
-		return minute; 
+
+		return minute;
 	}
 	
 	public static JComboBox<Integer> time()
@@ -77,6 +78,7 @@ public class DateAndTime
 		return time; 
 	}
 	
-	
+
+
 
 }
