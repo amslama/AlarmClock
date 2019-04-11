@@ -6,6 +6,13 @@ public class Alarm {
 	private LocalDateTime target;
 	private String name;
 	private String message;
+	// constructor for an exact non-relative time (this is the main constructor that should be used)
+	public Alarm(String n, String m, int month, int day, int hour, int minute) {
+		name = n;
+		message = m;
+		target = LocalDateTime.of(2019, month, day, hour, minute);
+		
+	}
 	// constructor for an alarm object with a number of hours, minutes and seconds until it goes off.
 	public Alarm(String n,String m, long hours, long minutes, long seconds) {
 		targetTime = Clock.systemDefaultZone().instant();
