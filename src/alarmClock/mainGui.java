@@ -117,7 +117,7 @@ public class mainGui {
 					
 					message = JOptionPane.showInputDialog (null, "What message would you like your alarm to display?");
 					Alarm al = new Alarm(name, message, month, day, hour, minute);
-					CSV.writeCSV(al);
+					CSV.writeCSV(al); 	
 				}
 				
 				

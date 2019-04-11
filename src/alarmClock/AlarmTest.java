@@ -5,8 +5,8 @@ import java.time.Clock;
 public class AlarmTest {
 
 	public static void main(String[] args) {
-		// create a 10 second alarm
-		Alarm target = new Alarm("Test Alarm", 60);
+		// I tested an alarm for 9:09 PM april 10th, it worked...
+		Alarm target = new Alarm("Test Alarm","This is a test alarm", 4, 10, 21, 9);
 		System.out.println("Alarm '" + target.getName() + "' created, target time is " + target.toString());
 		while(true) {
 			//simple test loop
