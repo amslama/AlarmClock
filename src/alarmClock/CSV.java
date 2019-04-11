@@ -13,7 +13,7 @@ public class CSV {
     static List<Alarm> alarmInfoList = new ArrayList<>();
     static int listCounter = 0;
 
-    //TODO Alarm Time is 24 hr time for simplicity, date format is  MM-DD
+    //Accepts an alarm object
     public static void writeCSV(Alarm a) {
     	
         String fileName = "AlarmInfo.csv";
@@ -44,27 +44,33 @@ public class CSV {
 
     public static void readCSV() {
         String fileName = "AlarmInfo.csv";
-
+        String line = "";
+        List<String> lines = new ArrayList<>();
         try{
+        	BufferedReader br = new BufferedReader(new FileReader(fileName));
         	
+        	
+        	/*
         	//creates the scanner
         	Scanner scan = new Scanner(new File(fileName));
         	
         	//Set delimiter
         	scan.useDelimiter(",\\s*");
         	
-        	while(scan.hasNext()){
-        		List<String> lines = new ArrayList<>();
-        		lines.add(scan.next());
-        		System.out.print(lines);
+        	while(scan.hasNextLine()){
+        		//List<String> lines = new ArrayList<>();
+        		lines.add();
+        		
         	}
         	scan.close();
+        	System.out.print(lines.get(2));*/
+        	
 
-            /*String line;
+           
             while ((line = reader.readLine()) != null) {
                 String[] values = line.split(",\\s*");
                 // Adds the currently parsed line to 2d arraylist
-                alarmInfoList.add(Arrays.asList(values)); */
+                alarmInfoList.add(Arrays.asList(values)); 
         	
 
                 // If you want to fetch a certain group of information, use alarmInfoList.get() to fetch the whole group
@@ -77,7 +83,10 @@ public class CSV {
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        }
+        } catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
     }
     
