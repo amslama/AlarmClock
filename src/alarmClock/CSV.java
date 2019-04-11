@@ -63,4 +63,9 @@ public class CSV {
         }
 
     }
+    
+    public static List<Alarm> getList()
+    {
+    	return alarmInfoList;
+    }
 }
