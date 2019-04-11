@@ -53,10 +53,10 @@ public class mainGui {
 					String message;
 
 
-					int month = 0;
-					int day = 0;
-					int hour = 0;
-					int minute = 0;
+					int month = -1;
+					int day = -1;
+					int hour = -1;
+					int minute = -1;
 
 					name = JOptionPane.showInputDialog (null, "What would you like to call your alarm?");
 
@@ -109,16 +109,17 @@ public class mainGui {
 								c.gridx = 1;
 								addTime.add(minuteSet, c);
 
-								choice = JOptionPane.showConfirmDialog(null, addDay, "Day Selection", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
-								if(choice == JOptionPane.OK_CANCEL_OPTION)
+								choice = JOptionPane.showConfirmDialog(null, addTime, "Day Selection", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+								if(choice == 0)
 								{
 									hour = (int) hourSet.getSelectedItem();
 									minute = (int) minuteSet.getSelectedItem();
+									System.out.println("This is being reached");
 								}
 							}
 						}
 					}
-					if(month != 0 && day != 0 && hour != 0 && minute != 0)
+					if(month != -1 && day != -1 && hour != -1 && minute != -1)
 					{
 
 						message = JOptionPane.showInputDialog (null, "What message would you like your alarm to display?");
@@ -182,7 +183,7 @@ public class mainGui {
 				if(JOptionPane.YES_OPTION == 1)
 				{
 
-					//remove(alarmsDropBox.getSelectedItem());
+					CSV.remove((Alarm) alarmsDropBox.getSelectedItem());
 
 				}
 

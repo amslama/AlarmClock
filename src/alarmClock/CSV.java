@@ -82,6 +82,7 @@ public class CSV {
 			{
 				String[] values = line.split(",\\s*");
 				Alarm al = new Alarm(values[0], values[1], Long.valueOf(values[2]), Long.valueOf(values[3]), Long.valueOf(values[4]));
+				System.out.println("Name = " + al.getName());
 				alarmInfoList.add(al); 
 
 				// If you want to fetch a certain group of information, use alarmInfoList.get() to fetch the whole group
@@ -108,6 +109,7 @@ public class CSV {
 
 	public static JComboBox<Alarm> getList()
 	{
+		readCSV();
 		JComboBox<Alarm> jcbA = new JComboBox<Alarm>();
 		for(int i = 0; i < alarmInfoList.size(); i++)
 		{
@@ -116,7 +118,7 @@ public class CSV {
 		return jcbA;
 	}
 	
-	public void remove(Alarm al)
+	public static void remove(Alarm al)
 	{
 		for(int i = 0; i < alarmInfoList.size(); i++)
 		{
