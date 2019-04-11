@@ -1,6 +1,8 @@
 package alarmClock;
 import java.time.*;
 
+import javax.swing.JOptionPane;
+
 public class Alarm {
 	private Instant targetTime;
 	private LocalDateTime target;
@@ -64,5 +66,17 @@ public class Alarm {
 	}
 	public String toString() {
 		return target.toString();
+	}
+	
+	public static void snooze()
+	{
+		String [] options = new String [] {"Snooze" , "Dismiss"};
+		int response = JOptionPane.showOptionDialog(null, "Snooze", "Snooze Alarm", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
+		System.out.println("boo" + response);
+		if(response == 0)
+			{
+			//code for setting alarm for 5 min from now
+			}
+	//	else if()
 	}
 }

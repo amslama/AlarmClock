@@ -10,86 +10,88 @@ import javax.swing.JComboBox;
 
 
 public class CSV {
-  
-    static List<Alarm> alarmInfoList = new ArrayList<>();
-    static int listCounter = 0;
 
-    //TODO Alarm Time is 24 hr time for simplicity, date format is  MM-DD
-    public static void writeCSV(Alarm a) {
-    	
-        String fileName = "AlarmInfo.csv";
-        String fileLine = "";
-        PrintWriter writer = null;
-       // String name = null, message = null;
-    	//int month = 0, day = 0, hour = 0, minute = 0, seconds = 0, listCounter = 0;
-        
-        try{
-        	FileWriter fw = new FileWriter(fileName, true);
-        			
-            alarmInfoList.add(a);
+	static List<Alarm> alarmInfoList = new ArrayList<>();
+	static int listCounter = 0;
 
-            //Writing the argument inputs
-            fw.write(alarmInfoList.get(listCounter).getName() + "," +  alarmInfoList.get(listCounter).getMessage() + "," + alarmInfoList.get(listCounter)+"\n");
-        	fw.close();
-            listCounter++;
-            
-        }catch (FileNotFoundException e){
-            e.printStackTrace();
-        } catch (IOException e) {
+	//TODO Alarm Time is 24 hr time for simplicity, date format is  MM-DD
+	public static void writeCSV(Alarm a) {
+
+		String fileName = "AlarmInfo.csv";
+		String fileLine = "";
+		PrintWriter writer = null;
+		// String name = null, message = null;
+		//int month = 0, day = 0, hour = 0, minute = 0, seconds = 0, listCounter = 0;
+
+		try{
+			FileWriter fw = new FileWriter(fileName, true);
+
+			alarmInfoList.add(a);
+
+			//Writing the argument inputs
+			fw.write(alarmInfoList.get(listCounter).getName() + "," +  alarmInfoList.get(listCounter).getMessage() + "," + alarmInfoList.get(listCounter)+"\n");
+			fw.close();
+			listCounter++;
+
+		}catch (FileNotFoundException e){
+			e.printStackTrace();
+		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-    }
+	}
 
 
-    public static void readCSV() {
-        String fileName = "AlarmInfo.csv";
+	public static void readCSV() 
+	{
+		String fileName = "AlarmInfo.csv";
 
-        try{
-        	
-        	//creates the scanner
-        	Scanner scan = new Scanner(new File(fileName));
-        	
-        	//Set delimiter
-        	scan.useDelimiter(",\\s*");
-        	
-        	while(scan.hasNext()){
-        		List<String> lines = new ArrayList<>();
-        		lines.add(scan.next());
-        		System.out.print(lines);
-        	}
-        	scan.close();
 
-            /*String line;
-            while ((line = reader.readLine()) != null) {
-                String[] values = line.split(",\\s*");
-                // Adds the currently parsed line to 2d arraylist
-                alarmInfoList.add(Arrays.asList(values)); */
-        	
+		try 
+		{
+			BufferedReader reader = new BufferedReader(new FileReader(fileName));
 
-                // If you want to fetch a certain group of information, use alarmInfoList.get() to fetch the whole group
-                // From the 2d array
+			String line;
+			while ((line = reader.readLine()) != null) 
+			{
+				String[] values = line.split(",\\s*");
+				Alarm al = new Alarm(values[0], values[1], Long.valueOf(values[2]), Long.valueOf(values[3]), Long.valueOf(values[4]));
+				alarmInfoList.add(al); 
 
-            
 
-            //output array to console for quick testing
-           // System.out.println(alarmInfoList);
+				// If you want to fetch a certain group of information, use alarmInfoList.get() to fetch the whole group
+				// From the 2d array
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
 
-    }
-    
-    public static JComboBox<Alarm> getList()
-    {
-    	JComboBox<Alarm> jcbA = new JComboBox<Alarm>();
-    	for(int i = 0; i < alarmInfoList.size(); i++)
-    	{
-    		jcbA.addItem(alarmInfoList.get(i));
-    	}
-    	return jcbA;
-    }
-    
+
+				//output array to console for quick testing
+				// System.out.println(alarmInfoList);
+
+			}
+		} 
+		catch (FileNotFoundException e) 
+		{
+			e.printStackTrace();
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+	}
+
+	public static JComboBox<Alarm> getList()
+	{
+		JComboBox<Alarm> jcbA = new JComboBox<Alarm>();
+		for(int i = 0; i < alarmInfoList.size(); i++)
+		{
+			jcbA.addItem(alarmInfoList.get(i));
+		}
+		return jcbA;
+	}
+
 }

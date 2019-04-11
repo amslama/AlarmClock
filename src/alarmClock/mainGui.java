@@ -192,17 +192,8 @@ public class mainGui {
 
 		return mainGui;
 	}
-	
-
-	// Snooze the alarms
-		String [] options = new String [] {"Snooze" , "Dismiss"};
-		int response = JOptionPane.showOptionDialog(null, "Snooze", "Snooze Alarm", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
 
 
-    
-// Snooze the alarms
-	String [] options = new String [] {"Snooze" , "Dismiss"};
-	int response = JOptionPane.showOptionDialog(null, "Snooze", "Snooze Alarm", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
 
 
 }
