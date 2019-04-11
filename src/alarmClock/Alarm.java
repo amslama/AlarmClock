@@ -63,6 +63,12 @@ public class Alarm {
 	public String getMessage() {
 		return message;
 	}
+	public LocalDateTime getTarget() {
+		return target;
+	}
+	public static Alarm copy(Alarm a) {
+		return new Alarm(a.getName(),a.getMessage(),a.getTarget());
+	}
 	public String toString() {
 		return target.toString();
 	}
@@ -76,17 +82,21 @@ public class Alarm {
 		return false;
 	}
 	
-	public static void snooze()
+	public static void snooze(Alarm a)
 	{
 		String [] options = new String [] {"Snooze" , "Dismiss"};
 		int response = JOptionPane.showOptionDialog(null, "Snooze", "Snooze Alarm", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
 		if(response == 0)
 			{
-			//code for setting alarm for 5 min from now
+			Alarm b = Alarm.copy(a);
+			CSV.remove(a);
+			a = new Alarm(b.getName(),b.getMessage(), 5, 0);
+			CSV.writeCSV(a);
+			System.out.print("Added 5 mintues to alarm");
 			}
 		else if(response == 1)
 		{
-			//code for dismissing the alarm
+			CSV.remove(a);
 		}
 	}
 }

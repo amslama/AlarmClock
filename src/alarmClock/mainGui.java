@@ -15,11 +15,11 @@ import javax.swing.JPanel;
 public class mainGui {
 
 	private JFrame mainGui;
-
 	//creates base JFrame
 	public mainGui()
 	{
 		mainGui = new JFrame("Alarm Clock");
+		
 	}
 
 	//gets gui
@@ -197,7 +197,7 @@ public class mainGui {
 		return mainGui;
 	}
 
-
+	
 
 
 }
