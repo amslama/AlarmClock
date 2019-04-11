@@ -1,11 +1,12 @@
 package alarmClock;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
+
 import java.util.*;
-import java.time.*;
+
+import javax.swing.JComboBox;
+
+
 
 
 public class CSV {
@@ -81,9 +82,14 @@ public class CSV {
 
     }
     
-    public static List<Alarm> getList()
+    public static JComboBox<Alarm> getList()
     {
-    	return alarmInfoList;
+    	JComboBox<Alarm> jcbA = new JComboBox<Alarm>();
+    	for(int i = 0; i < alarmInfoList.size(); i++)
+    	{
+    		jcbA.addItem(alarmInfoList.get(i));
+    	}
+    	return jcbA;
     }
     
 }

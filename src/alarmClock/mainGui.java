@@ -5,7 +5,6 @@ import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.ComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -41,106 +40,115 @@ public class mainGui {
 
 		//button for dialog to add new alarm
 		JButton addAlarm = new JButton("Add");
-		addAlarm.setBounds(100,100,50,20);
+		addAlarm.setBounds(200,100,50,20);
 		addAlarm.addActionListener(new ActionListener() 
 		{
 			public void actionPerformed(ActionEvent e) 
 			{
 
 				try {
-					
-				String name;
-				String message;
 
-				int month = 0;
-				int day = 0;
-				int hour = 0;
-				int minute = 0;
+					String name = "";
+					String message;
 
-				name = JOptionPane.showInputDialog (null, "What would you like to call your alarm?");
+					int month = 0;
+					int day = 0;
+					int hour = 0;
+					int minute = 0;
 
-				JLabel monthQuery = new JLabel("What month would you like to set your alarm for?");
-				JLabel dayQuery = new JLabel("What day would you like to set your alarm for?");
-				JLabel timeQuery = new JLabel("What time would you like to set your alarm for?");
-				c.gridx = 0;
-				
-				JPanel addMonth = new JPanel();
-				addMonth.add(monthQuery, c);	
-				
-				JComboBox<Integer> monthSet = DateAndTime.monthTime();
-				c.gridx = 1;
-				
+					name = JOptionPane.showInputDialog (null, "What would you like to call your alarm?");
 
-				addMonth.add(monthSet, c);
-				
-				int choice = JOptionPane.showConfirmDialog(null, addMonth, "Month Selection", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
-				if(choice == 0)
-				{
+					if(name != null)
+					{
+						JLabel monthQuery = new JLabel("What month would you like to set your alarm for?");
+						JLabel dayQuery = new JLabel("What day would you like to set your alarm for?");
+						JLabel timeQuery = new JLabel("What time would you like to set your alarm for?");
+						c.gridx = 0;
 
-					month = (int) monthSet.getSelectedItem();
-					JOptionPane.showMessageDialog(null, "Month has been selected");
+						JPanel addMonth = new JPanel();
+						addMonth.add(monthQuery, c);	
 
-				}
-				
-				
-				JComboBox<Integer> daySet = DateAndTime.day(month);
-				JPanel addDay = new JPanel();
-				c.gridx = 0;
-				addDay.add(dayQuery, c);
-				c.gridx = 1;
-				addDay.add(daySet, c);
-				
-				choice = JOptionPane.showConfirmDialog(null, addDay, "Day Selection", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
-				if(choice == JOptionPane.OK_CANCEL_OPTION)
-				{
-					day = (int) daySet.getSelectedItem();
-				}
-				
-				JComboBox<Integer> hourSet = DateAndTime.time();
-				JComboBox<Integer> minuteSet = DateAndTime.minute();
-				JPanel addTime = new JPanel();
-				c.gridx = 0;
-				addTime.add(timeQuery, c);
-				c.gridy = 1;
-				addTime.add(hourSet, c);
-				c.gridx = 1;
-				addTime.add(minuteSet, c);
-				
-				choice = JOptionPane.showConfirmDialog(null, addDay, "Day Selection", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
-				if(choice == JOptionPane.OK_CANCEL_OPTION)
-				{
-					hour = (int) hourSet.getSelectedItem();
-					minute = (int) minuteSet.getSelectedItem();
-				}
-				
-				if(month != 0 && day != 0 && hour != 0 && minute != 0)
-				{
-					
-					message = JOptionPane.showInputDialog (null, "What message would you like your alarm to display?");
-					Alarm al = new Alarm(name, message, month, day, hour, minute);
+						JComboBox<Integer> monthSet = DateAndTime.monthTime();
+						c.gridx = 1;
 
-				//	CSV.writeCSV(al);
-					JOptionPane.showMessageDialog(null, "Alarm " + name + " created.");
 
-				}
-				
-				else
-				{
-					
-					JOptionPane.showMessageDialog(null, "Alarm was not created");
+						addMonth.add(monthSet, c);
+
+						int choice = JOptionPane.showConfirmDialog(null, addMonth, "Month Selection", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+						if(choice == 0)
+						{
+
+							month = (int) monthSet.getSelectedItem();
+							JOptionPane.showMessageDialog(null, "Month has been selected");
 
 
 
-				}
-				
-				
-				
+
+							JComboBox<Integer> daySet = DateAndTime.day(month);
+							JPanel addDay = new JPanel();
+							c.gridx = 0;
+							addDay.add(dayQuery, c);
+							c.gridx = 1;
+							addDay.add(daySet, c);
+
+							choice = JOptionPane.showConfirmDialog(null, addDay, "Day Selection", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+							if(choice == 0)
+							{
+								day = (int) daySet.getSelectedItem();
+
+
+								JComboBox<Integer> hourSet = DateAndTime.time();
+								JComboBox<Integer> minuteSet = DateAndTime.minute();
+								JPanel addTime = new JPanel();
+								c.gridx = 0;
+								addTime.add(timeQuery, c);
+								c.gridy = 1;
+								addTime.add(hourSet, c);
+								c.gridx = 1;
+								addTime.add(minuteSet, c);
+
+								choice = JOptionPane.showConfirmDialog(null, addDay, "Day Selection", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+								if(choice == JOptionPane.OK_CANCEL_OPTION)
+								{
+									hour = (int) hourSet.getSelectedItem();
+									minute = (int) minuteSet.getSelectedItem();
+								}
+							}
+						}
+					}
+					if(month != 0 && day != 0 && hour != 0 && minute != 0)
+					{
+
+						message = JOptionPane.showInputDialog (null, "What message would you like your alarm to display?");
+						Alarm al = new Alarm(name, message, month, day, hour, minute);
+
+						CSV.writeCSV(al);
+						JOptionPane.showMessageDialog(null, "Alarm " + name + " created.");
+
+					}
+
+
+					else
+					{
+
+						JOptionPane.showMessageDialog(null, "Alarm was not created");
+
+
+
+					}
+
+
+
 				}
 				catch(NullPointerException enull)
 				{
 					JOptionPane.showMessageDialog(null, enull.getStackTrace());
+					System.out.println(enull.getCause());
 				}
-				
+				catch(Exception emptyEx) {
+					JOptionPane.showMessageDialog(null, "You didn't enter anything.");
+				}
+
 			}
 
 		});
@@ -150,13 +158,15 @@ public class mainGui {
 
 
 		//combobox for list of alarms
-		JComboBox alarmsDropBox = new JComboBox((ComboBoxModel) CSV.getList());
+		JComboBox<Alarm> alarmsDropBox = CSV.getList();
 		alarmsDropBox.setBounds(0, 125, 500, 20);
 		c.fill = GridBagConstraints.HORIZONTAL;
+		c.gridwidth = 2;
 		c.gridx = 0;
 		c.gridy = 1;
 		mainGui.add(alarmsDropBox, c);
 
+		c.gridwidth = 1;
 		//button to remove alarm
 		JButton removeAlarm = new JButton("Dismiss");
 		addAlarm.setBounds(500,125,20,20);
