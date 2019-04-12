@@ -180,7 +180,7 @@ public class mainGui {
 					if(dismiss == 0)
 					{
 
-						CSV.remove((Alarm) alarmsDropBox.getSelectedItem(),false);
+						CSV.remove((Alarm) alarmsDropBox.getSelectedItem());
 
 					}
 				}

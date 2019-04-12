@@ -35,16 +35,16 @@ public class CSV {
 			fw.write(alarmInfoList.get(listCounter).getName() + "," +  alarmInfoList.get(listCounter).getMessage() + "," + alarmInfoList.get(listCounter).getTarget()+"\n");
 			fw.close();
 			listCounter++;
+			System.out.println("Listcounter incrememnted");
 
-	//	}catch (FileNotFoundException e){
-	//		e.printStackTrace();
+			//	}catch (FileNotFoundException e){
+			//		e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
 	}
-	
+
 	public static void writeAfterRemoveCSV()
 	{
 		String fileName = "AlarmInfo.csv";
@@ -53,14 +53,13 @@ public class CSV {
 
 		try{
 			FileWriter fw = new FileWriter(fileName, false);
-			System.out.println("aferremovelistCounter = " + listCounter);
-			System.out.println("Am I crasging here? in after" + alarmInfoList.get(listCounter-1).getName());
-
-			System.out.println("After remove " +alarmInfoList.size());
 
 			//Writing the argument inputs
-			fw.write(alarmInfoList.get(listCounter-1).getName() + "," +  alarmInfoList.get(listCounter-1).getMessage() + "," + alarmInfoList.get(listCounter-1).getTarget()+"\n");
-			fw.close();
+			if(alarmInfoList.size() > 0)
+			{
+				fw.write(alarmInfoList.get(listCounter).getName() + "," +  alarmInfoList.get(listCounter).getMessage() + "," + alarmInfoList.get(listCounter).getTarget()+"\n");
+				fw.close();
+			}
 
 		}catch (FileNotFoundException e){
 			e.printStackTrace();
@@ -104,7 +103,7 @@ public class CSV {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	public static JComboBox<Alarm> getList()
@@ -117,27 +116,26 @@ public class CSV {
 		}
 		return jcbA;
 	}
-	
-	public static void remove(Alarm al, boolean snooze)
+
+	public static void remove(Alarm al)
 	{
 		for(int i = 0; i < alarmInfoList.size(); i++)
 		{
-			
+
 			if (alarmInfoList.get(i).equals(al))
 			{
 				String name = alarmInfoList.get(i).getName();
-				alarmInfoList.remove(i);
-				if(!snooze)
-				{
-					JOptionPane.showMessageDialog(null, "Alarm " + name + " removed.");
-				}
+				alarmInfoList.remove(i);				
+				JOptionPane.showMessageDialog(null, "Alarm " + name + " removed.");
 				listCounter--;
 				writeAfterRemoveCSV();
 				break;
-				
-				
+
+
 			}
 		}
 	}
+
+
 
 }
