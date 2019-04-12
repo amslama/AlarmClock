@@ -132,17 +132,6 @@ public class CSV {
 		}
 	}
 	
-	public static void swap(Alarm al1, Alarm al2) {
-		for(int i = 0; i < alarmInfoList.size(); i++)
-		{
-			
-			if (alarmInfoList.get(i).equals(al1))
-			{
-				alarmInfoList.set(i, al2);
-				break;
-				
-			}
-		}
-	}
+	
 
 }
