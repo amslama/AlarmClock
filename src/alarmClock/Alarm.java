@@ -91,16 +91,15 @@ public class Alarm {
 		int response = JOptionPane.showOptionDialog(null, "Snooze", "Snooze Alarm", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
 		if(response == 0)
 			{
-			Alarm b = Alarm.copy(a);
-			CSV.remove(a,true);
-			a = new Alarm(b.getName(),b.getMessage(), 5, 0);
-			CSV.writeAfterRemoveCSV();
-			CSV.writeCSV(a);
-			System.out.println("Added 5 mintues to alarm");
+			
+			Alarm b = new Alarm(a.getName(),a.getMessage(), 0, 10);
+			CSV.swap(a, b);
+			
+			System.out.println("Added 1 mintue to alarm");
 			}
 		else if(response == 1)
 		{
-			CSV.remove(a,false);
+			CSV.remove(a);
 		}
 	}
 }

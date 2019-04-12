@@ -33,6 +33,7 @@ public class CSV {
 			fw.write(alarmInfoList.get(listCounter).getName() + "," +  alarmInfoList.get(listCounter).getMessage() + "," + alarmInfoList.get(listCounter).getTarget()+"\n");
 			fw.close();
 			listCounter++;
+			System.out.println("Listcounter incrememnted");
 
 	//	}catch (FileNotFoundException e){
 	//		e.printStackTrace();
@@ -112,7 +113,7 @@ public class CSV {
 		return jcbA;
 	}
 	
-	public static void remove(Alarm al, boolean snooze)
+	public static void remove(Alarm al)
 	{
 		for(int i = 0; i < alarmInfoList.size(); i++)
 		{
@@ -121,10 +122,23 @@ public class CSV {
 			{
 				String name = alarmInfoList.get(i).getName();
 				alarmInfoList.remove(i);
-				if(!snooze)
-					JOptionPane.showMessageDialog(null, "Alarm " + name + " removed.");
+				
+				JOptionPane.showMessageDialog(null, "Alarm " + name + " removed.");
 				listCounter--;
 				writeAfterRemoveCSV();
+				break;
+				
+			}
+		}
+	}
+	
+	public static void swap(Alarm al1, Alarm al2) {
+		for(int i = 0; i < alarmInfoList.size(); i++)
+		{
+			
+			if (alarmInfoList.get(i).equals(al1))
+			{
+				alarmInfoList.set(i, al2);
 				break;
 				
 			}
