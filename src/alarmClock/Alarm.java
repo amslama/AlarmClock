@@ -91,11 +91,12 @@ public class Alarm {
 		int response = JOptionPane.showOptionDialog(null, "Snooze", "Snooze Alarm", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
 		if(response == 0)
 			{
-			Alarm b = Alarm.copy(a);
+			System.out.println("Is this reached?");
+			Alarm b = new Alarm(a.getName(),a.getMessage(), 5, 0);
+			CSV.writeCSV(b);
 			CSV.remove(a,true);
-			a = new Alarm(b.getName(),b.getMessage(), 5, 0);
 			CSV.writeAfterRemoveCSV();
-			CSV.writeCSV(a);
+
 			System.out.println("Added 5 mintues to alarm");
 			}
 		else if(response == 1)
