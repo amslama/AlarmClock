@@ -50,6 +50,7 @@ public class CSV {
 		String fileName = "AlarmInfo.csv";
 		// String name = null, message = null;
 		//int month = 0, day = 0, hour = 0, minute = 0, seconds = 0, listCounter = 0;
+		listCounter = alarmInfoList.size();
 
 		try{
 			FileWriter fw = new FileWriter(fileName, false);
@@ -57,7 +58,7 @@ public class CSV {
 			//Writing the argument inputs
 			if(alarmInfoList.size() > 0)
 			{
-				fw.write(alarmInfoList.get(listCounter).getName() + "," +  alarmInfoList.get(listCounter).getMessage() + "," + alarmInfoList.get(listCounter).getTarget()+"\n");
+				fw.write(alarmInfoList.get(listCounter-1).getName() + "," +  alarmInfoList.get(listCounter-1).getMessage() + "," + alarmInfoList.get(listCounter-1).getTarget()+"\n");
 				fw.close();
 			}
 
