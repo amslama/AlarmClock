@@ -25,12 +25,14 @@ public class AlarmClock {
 
 		mainGui.add(mG.createGui());
 		mainGui.setVisible(true);
-		Timer t = new Timer(60000, new ActionListener() {
+		Timer t = new Timer(1000, new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				System.out.println("The system is checking if any alarms are expired");
 				for(int i = 0; i < CSV.alarmInfoList.size(); i++) {
 					//check each alarm in the arraylist
+					
 					if(CSV.alarmInfoList.get(i).expired()) {
 						Alarm.snooze(CSV.alarmInfoList.get(i));
 					}
@@ -38,6 +40,7 @@ public class AlarmClock {
 				
 			}
 		});
+		t.start();
 	}
 
 }

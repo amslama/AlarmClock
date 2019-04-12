@@ -113,7 +113,7 @@ public class CSV {
 		return jcbA;
 	}
 	
-	public static void remove(Alarm al)
+	public static void remove(Alarm al, boolean snooze)
 	{
 		for(int i = 0; i < alarmInfoList.size(); i++)
 		{
@@ -122,7 +122,8 @@ public class CSV {
 			{
 				String name = alarmInfoList.get(i).getName();
 				alarmInfoList.remove(i);
-				JOptionPane.showMessageDialog(null, "Alarm " + name + " removed.");
+				if(!snooze)
+					JOptionPane.showMessageDialog(null, "Alarm " + name + " removed.");
 				listCounter--;
 				writeAfterRemoveCSV();
 				break;

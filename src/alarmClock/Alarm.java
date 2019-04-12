@@ -67,9 +67,7 @@ public class Alarm {
 	public String getMessage() {
 		return message;
 	}
-	public LocalDateTime getTarget() {
-		return target;
-	}
+	
 	public static Alarm copy(Alarm a) {
 		return new Alarm(a.getName(),a.getMessage(),a.getTarget());
 	}
@@ -94,14 +92,15 @@ public class Alarm {
 		if(response == 0)
 			{
 			Alarm b = Alarm.copy(a);
-			CSV.remove(a);
+			CSV.remove(a,true);
 			a = new Alarm(b.getName(),b.getMessage(), 5, 0);
+			CSV.writeAfterRemoveCSV();
 			CSV.writeCSV(a);
-			System.out.print("Added 5 mintues to alarm");
+			System.out.println("Added 5 mintues to alarm");
 			}
 		else if(response == 1)
 		{
-			CSV.remove(a);
+			CSV.remove(a,false);
 		}
 	}
 }
