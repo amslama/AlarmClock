@@ -23,6 +23,7 @@ public class CSV {
 		// String name = null, message = null;
 		//int month = 0, day = 0, hour = 0, minute = 0, seconds = 0, listCounter = 0;
 
+		listCounter = alarmInfoList.size();
 		try{
 			FileWriter fw = new FileWriter(fileName, true);
 
@@ -94,10 +95,8 @@ public class CSV {
 		{
 			e.printStackTrace();
 		} catch (NumberFormatException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
