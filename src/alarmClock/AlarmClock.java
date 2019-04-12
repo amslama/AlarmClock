@@ -20,7 +20,7 @@ public class AlarmClock {
 		mainGui mG = new mainGui();
 		JFrame mainGui = mG.getGui();
 		mainGui.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		mainGui.setSize(300,200);
+		mainGui.setSize(800,200);
 		mainGui.setLocationRelativeTo(null);
 
 		mainGui.add(mG.createGui());

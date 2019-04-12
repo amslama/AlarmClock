@@ -35,10 +35,18 @@ public class mainGui {
 		//Set up panel
 		JPanel mainGui = new JPanel(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
+		c.gridwidth = 2;
 
-		c.gridx = 2;
-		c.gridy = 0;
+		 JLabel message = new JLabel("This alarm will allow you to add an alarm for a specific date, snooze an active alarm");
+		 JLabel messagetwo = new JLabel("for one minute, or dismiss to close and delete the alarm.");
+		 c.gridx = 0;
+		 c.gridy = 0;
+		 mainGui.add(message, c);
+		 c.gridy = 1;
+		 mainGui.add(messagetwo,c);
 
+		c.gridx = 0;
+		c.gridy = 1;
 		//button for dialog to add new alarm
 		JButton addAlarm = new JButton("Add");
 		JComboBox<Alarm> alarmsDropBox = CSV.getList();
@@ -153,8 +161,11 @@ public class mainGui {
 
 		});
 
-
-		mainGui.add(addAlarm);
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.gridx = 0;
+		c.gridy = 2;
+		c.gridwidth = 1;
+		mainGui.add(addAlarm,c);
 
 
 		//combobox for list of alarms
@@ -163,9 +174,10 @@ public class mainGui {
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.gridwidth = 2;
 		c.gridx = 0;
-		c.gridy = 1;
+		c.gridy = 3;
 		mainGui.add(alarmsDropBox, c);
-
+		
+		c.fill = GridBagConstraints.CENTER;
 		c.gridwidth = 1;
 
 		//button to remove alarm
@@ -195,9 +207,9 @@ public class mainGui {
 			}
 
 		});
-		c.gridx = 2;
-		c.gridy = 1;
-		mainGui.add(removeAlarm);
+		c.gridx = 1;
+		c.gridy = 2;
+		mainGui.add(removeAlarm,c);
 
 		return mainGui;
 	}
