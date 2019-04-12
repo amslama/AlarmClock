@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class mainGui {
-
+	
 	private JFrame mainGui;
 	//creates base JFrame
 	public mainGui()
@@ -41,6 +41,7 @@ public class mainGui {
 
 		//button for dialog to add new alarm
 		JButton addAlarm = new JButton("Add");
+		JComboBox<Alarm> alarmsDropBox = CSV.getList();
 		addAlarm.setBounds(100,100,50,20);
 		addAlarm.addActionListener(new ActionListener()
 		{
@@ -123,6 +124,7 @@ public class mainGui {
 
 						CSV.writeCSV(al);
 						JOptionPane.showMessageDialog(null, "Alarm " + name + " created.");
+						alarmsDropBox.addItem((Alarm) al);
 					}
 
 					else
@@ -156,7 +158,6 @@ public class mainGui {
 
 
 		//combobox for list of alarms
-		JComboBox<Alarm> alarmsDropBox = CSV.getList();
 		alarmsDropBox.setBounds(0, 125, 500, 20);
 
 		c.fill = GridBagConstraints.HORIZONTAL;
@@ -180,7 +181,9 @@ public class mainGui {
 					if(dismiss == 0)
 					{
 
-						CSV.remove((Alarm) alarmsDropBox.getSelectedItem());
+						Alarm removeMe = (Alarm) alarmsDropBox.getSelectedItem();
+						CSV.remove(removeMe);
+						alarmsDropBox.removeItem(removeMe);
 
 					}
 				}
