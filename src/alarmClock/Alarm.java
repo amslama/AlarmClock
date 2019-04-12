@@ -91,6 +91,7 @@ public class Alarm {
 		int response = JOptionPane.showOptionDialog(null, "Snooze", "Snooze Alarm", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
 		if(response == 0)
 			{
+
 			// set new alarm number of minutes/seconds in the future
 			Alarm b = new Alarm(a.getName(),a.getMessage(), 0, 10);
 			for(int i = 0; i < CSV.alarmInfoList.size(); i++)
@@ -103,6 +104,7 @@ public class Alarm {
 			}
 			
 			System.out.println("Added 1 mintue to alarm");
+
 			}
 		else if(response == 1)
 		{

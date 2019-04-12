@@ -81,10 +81,6 @@ public class mainGui {
 						{
 
 							month = (int) monthSet.getSelectedItem();
-							JOptionPane.showMessageDialog(null, "Month has been selected");
-
-
-
 
 							JComboBox<Integer> daySet = DateAndTime.day(month);
 							JPanel addDay = new JPanel();

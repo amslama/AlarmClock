@@ -28,7 +28,9 @@ public class CSV {
 			FileWriter fw = new FileWriter(fileName, true);
 
 			alarmInfoList.add(a);
-
+			System.out.println("listCounter = " + listCounter);
+			System.out.println("Am I crasging here?" + alarmInfoList.get(listCounter).getName());
+			System.out.println(alarmInfoList.size());
 			//Writing the argument inputs
 			fw.write(alarmInfoList.get(listCounter).getName() + "," +  alarmInfoList.get(listCounter).getMessage() + "," + alarmInfoList.get(listCounter).getTarget()+"\n");
 			fw.close();
@@ -52,11 +54,14 @@ public class CSV {
 
 		try{
 			FileWriter fw = new FileWriter(fileName, false);
+			System.out.println("aferremovelistCounter = " + listCounter);
+			System.out.println("Am I crasging here? in after" + alarmInfoList.get(listCounter-1).getName());
+
+			System.out.println("After remove " +alarmInfoList.size());
 
 			//Writing the argument inputs
-			fw.write(alarmInfoList.get(listCounter).getName() + "," +  alarmInfoList.get(listCounter).getMessage() + "," + alarmInfoList.get(listCounter).getTarget()+"\n");
+			fw.write(alarmInfoList.get(listCounter-1).getName() + "," +  alarmInfoList.get(listCounter-1).getMessage() + "," + alarmInfoList.get(listCounter-1).getTarget()+"\n");
 			fw.close();
-			listCounter++;
 
 		}catch (FileNotFoundException e){
 			e.printStackTrace();
@@ -90,7 +95,7 @@ public class CSV {
 
 			}
 
-
+			listCounter = alarmInfoList.size();
 		}
 		catch (FileNotFoundException e) 
 		{
@@ -100,6 +105,7 @@ public class CSV {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
 	}
 
 	public static JComboBox<Alarm> getList()
@@ -121,12 +127,12 @@ public class CSV {
 			if (alarmInfoList.get(i).equals(al))
 			{
 				String name = alarmInfoList.get(i).getName();
-				alarmInfoList.remove(i);
-				
+				alarmInfoList.remove(i);				
 				JOptionPane.showMessageDialog(null, "Alarm " + name + " removed.");
 				listCounter--;
 				writeAfterRemoveCSV();
 				break;
+				
 				
 			}
 		}
