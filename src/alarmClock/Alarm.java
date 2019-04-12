@@ -95,7 +95,6 @@ public class Alarm {
 			Alarm b = new Alarm(a.getName(),a.getMessage(), 5, 0);
 			CSV.writeCSV(b);
 			CSV.remove(a,true);
-			CSV.writeAfterRemoveCSV();
 
 			System.out.println("Added 5 mintues to alarm");
 			}
